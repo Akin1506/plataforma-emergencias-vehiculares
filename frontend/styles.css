@@ -1,61 +1,97 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
   margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
 }
 
-.contenedor {
-  max-width: 900px;
-  margin: auto;
+.hidden {
+  display: none;
 }
 
-h1 {
-  text-align: center;
-  color: #1f2937;
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .card {
   background: white;
   padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.center-box .card {
+  width: 420px;
 }
 
-input, button {
+input,
+select,
+button {
+  width: 100%;
   padding: 10px;
-  font-size: 16px;
+  margin-top: 10px;
+  box-sizing: border-box;
 }
 
 button {
   background: #2563eb;
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 6px;
 }
 
 button:hover {
   background: #1d4ed8;
 }
 
-.incidente {
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #111827;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar button {
+  margin-bottom: 10px;
+  background: #374151;
+}
+
+.sidebar button:hover {
+  background: #4b5563;
+}
+
+.contenido {
+  flex: 1;
+  padding: 20px;
+}
+
+.vista {
+  margin-top: 20px;
+}
+
+.item {
+  background: #f9fafb;
   border: 1px solid #ddd;
   padding: 10px;
   margin-top: 10px;
-  border-radius: 6px;
-  background: #fafafa;
+  border-radius: 8px;
 }
 
-#mensaje {
-  margin-top: 20px;
+#login-mensaje,
+#mensaje-general {
+  margin-top: 12px;
   font-weight: bold;
-  color: green;
 }

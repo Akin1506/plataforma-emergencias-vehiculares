@@ -1,51 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emergencias Vehiculares</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plataforma de Emergencias Vehiculares</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="contenedor">
-    <h1>Plataforma de Emergencias Vehiculares</h1>
-
-    <section class="card">
-      <h2>Registrar Incidente</h2>
-      <form id="form-incidente">
-        <input type="text" id="descripcion" placeholder="Descripción" required>
-        <input type="text" id="ubicacion" placeholder="Ubicación" required>
-        <input type="text" id="tipo" placeholder="Tipo de incidente" required>
-        <input type="text" id="prioridad" placeholder="Prioridad" required>
-        <button type="submit">Registrar</button>
+  <!-- LOGIN -->
+  <div id="login-view" class="center-box">
+    <div class="card">
+      <h1>Iniciar Sesión</h1>
+      <form id="form-login">
+        <input type="email" id="login-correo" placeholder="Correo" required />
+        <input type="password" id="login-password" placeholder="Contraseña" required />
+        <button type="submit">Ingresar</button>
       </form>
-    </section>
 
-    <section class="card">
-      <h2>Lista de Incidentes</h2>
-      <button id="btn-cargar">Cargar Incidentes</button>
-      <div id="lista-incidentes"></div>
-    </section>
+      <hr />
 
-    <section class="card">
-      <h2>Asignar Taller</h2>
-      <form id="form-asignar">
-        <input type="number" id="id-asignar" placeholder="ID del incidente" required>
-        <input type="text" id="taller" placeholder="Nombre del taller" required>
-        <button type="submit">Asignar</button>
+      <h2>Registro rápido</h2>
+      <form id="form-registro">
+        <input type="text" id="reg-nombre" placeholder="Nombre completo" required />
+        <input type="email" id="reg-correo" placeholder="Correo" required />
+        <input type="password" id="reg-password" placeholder="Contraseña" required />
+        <select id="reg-rol" required>
+          <option value="cliente">Cliente</option>
+          <option value="admin_taller">Administrador de Taller</option>
+        </select>
+        <button type="submit">Registrarme</button>
       </form>
-    </section>
 
-    <section class="card">
-      <h2>Cambiar Estado</h2>
-      <form id="form-estado">
-        <input type="number" id="id-estado" placeholder="ID del incidente" required>
-        <input type="text" id="nuevo-estado" placeholder="Nuevo estado" required>
-        <button type="submit">Actualizar</button>
-      </form>
-    </section>
+      <div id="login-mensaje"></div>
+    </div>
+  </div>
 
-    <div id="mensaje"></div>
+  <!-- APP -->
+  <div id="app-view" class="app hidden">
+    <aside class="sidebar">
+      <h2>Menú</h2>
+      <button onclick="mostrarVista('vista-perfil')">Perfil</button>
+      <button onclick="mostrarVista('vista-vehiculos')">Vehículos</button>
+      <button onclick="mostrarVista('vista-talleres')">Talleres</button>
+      <button onclick="mostrarVista('vista-incidentes')">Incidentes</button>
+      <button onclick="mostrarVista('vista-estado')">Consultar Estado</button>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </aside>
+
+    <main class="contenido">
+      <h1>Plataforma de Emergencias Vehiculares</h1>
+      <p id="bienvenida"></p>
+      <div id="mensaje-general"></div>
+
+      <section id="vista-perfil" class="vista">
+        <div class="card">
+          <h2>Perfil del Usuario</h2>
+          <div id="perfil-usuario"></div>
+        </div>
+      </section>
+
+      <section id="vista-vehiculos" class="vista hidden">
+        <div class="card">
+          <h2>Registrar Vehículo</h2>
+          <form id="form-vehiculo">
+            <input type="text" id="placa" placeholder="Placa" required />
+            <input type="text" id="marca" placeholder="Marca" required />
+            <input type="text" id="modelo" placeholder="Modelo" required />
+            <input type="text" id="color" placeholder="Color" required />
+            <input type="number" id="anio" placeholder="Año" required />
+            <button type="submit">Registrar vehículo</button>
+          </form>
+
+          <button id="btn-cargar-vehiculos">Ver vehículos</button>
+          <div id="lista-vehiculos"></div>
+        </div>
+      </section>
+
+      <section id="vista-talleres" class="vista hidden">
+        <div class="card">
+          <h2>Registrar Taller</h2>
+          <form id="form-taller">
+            <input type="text" id="taller-nombre" placeholder="Nombre del taller" required />
+            <input type="text" id="taller-ubicacion" placeholder="Ubicación" required />
+            <input type="text" id="taller-especialidad" placeholder="Especialidad" required />
+            <button type="submit">Registrar taller</button>
+          </form>
+
+          <button id="btn-cargar-talleres">Ver talleres</button>
+          <div id="lista-talleres"></div>
+        </div>
+      </section>
+
+      <section id="vista-incidentes" class="vista hidden">
+        <div class="card">
+          <h2>Registrar Incidente</h2>
+          <form id="form-incidente">
+            <input type="text" id="descripcion" placeholder="Descripción" required />
+            <input type="text" id="ubicacion" placeholder="Ubicación" required />
+            <input type="text" id="tipo" placeholder="Tipo de incidente" required />
+            <input type="text" id="prioridad" placeholder="Prioridad" required />
+            <button type="submit">Registrar incidente</button>
+          </form>
+
+          <hr />
+
+          <h2>Asignar Taller</h2>
+          <form id="form-asignar">
+            <input type="number" id="id-asignar" placeholder="ID del incidente" required />
+            <input type="text" id="taller" placeholder="Nombre del taller" required />
+            <button type="submit">Asignar taller</button>
+          </form>
+
+          <hr />
+
+          <h2>Cambiar Estado</h2>
+          <form id="form-estado">
+            <input type="number" id="id-estado" placeholder="ID del incidente" required />
+            <input type="text" id="nuevo-estado" placeholder="Nuevo estado" required />
+            <button type="submit">Actualizar estado</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="vista-estado" class="vista hidden">
+        <div class="card">
+          <h2>Lista de Incidentes</h2>
+          <button id="btn-cargar-incidentes">Cargar incidentes</button>
+          <div id="lista-incidentes"></div>
+        </div>
+      </section>
+    </main>
   </div>
 
   <script src="script.js"></script>

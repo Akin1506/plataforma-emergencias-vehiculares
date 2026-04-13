@@ -1,1 +1,4 @@
+usuarios = []
+vehiculos = []
+talleres = []
 incidentes = []
